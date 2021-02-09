@@ -20,14 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/free-zone/hello', 'TestController@guest');
 Route::prefix('restricted-zone')
 ->middleware('auth')
 ->group(function () {
 Route::get('/hello', 'TestController@logged')
 ->name('restricted-zone');
-});
-Route::prefix('free-zone')
-->group(function () {
-Route::get('/hello', 'TestController@guest')
-->name('free-zone');
 });

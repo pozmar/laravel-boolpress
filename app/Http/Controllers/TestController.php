@@ -18,18 +18,20 @@ class TestController extends Controller
     
     public function logged()
     {
-      $user = Auth::user();
+     
+      if(Auth::check()){
+        $user = Auth::user();
+      }
+        else{
+          abort(401);
+        }
       return view('hello', compact('user'));
     }
       
     public function guest()
     {
-      if(Auth::check()){
-        return riderect()->route('restricted-zone');
-      }
-      else{
         return view('hello');
-      }
+      
     }
     /**
      * Show the form for creating a new resource.

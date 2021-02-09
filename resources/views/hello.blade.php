@@ -1,13 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div class="guest">
-<h3>
-@guest
-  Ciao utente non identificato!
-@else
-  {{ $user->name }}
-@guest
-</h3>
 
-</div>
+@if(isset($user))
+  <h1>Ciao {{ $user->name}}</h1>
+@else
+  <h1>Ciao utente</h1>
+@endif
 @endsection
