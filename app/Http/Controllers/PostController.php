@@ -70,7 +70,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+      $post = PostModel::find($id);
+      return view('edit', compact('post'));
     }
 
     /**
@@ -80,9 +81,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        //
+        $oldPost = $request->validated();
+        $oldPost = PostModel::find($id);
+        $oldPost->title = $validated['title'];
+        $oldPost->description = $validated['description'];
+        $oldPost->save();
+        return redirect()->route('posts.index');
     }
 
     /**
