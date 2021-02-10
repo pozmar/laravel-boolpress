@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\PostModel;
 class PostSeeder extends Seeder
 {
     /**
@@ -11,6 +11,10 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        //
-    }
+      factory(App\PostModel::class, 10)->create()->each(
+          function($el){
+              $el->save();
+          }
+      );
+  }
 }

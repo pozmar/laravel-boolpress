@@ -27,3 +27,4 @@ Route::prefix('restricted-zone')
 Route::get('/hello', 'TestController@logged')
 ->name('restricted-zone');
 });
+Route::resource('posts', 'PostController');
