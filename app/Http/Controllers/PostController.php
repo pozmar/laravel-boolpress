@@ -83,7 +83,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, $id)
     {
-        $oldPost = $request->validated();
+        $validated = $request->validated();
         $oldPost = PostModel::find($id);
         $oldPost->title = $validated['title'];
         $oldPost->description = $validated['description'];
@@ -99,6 +99,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PostModel::destroy($id);
+        return redirect()->route('posts.index');
     }
 }

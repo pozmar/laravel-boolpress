@@ -10,6 +10,8 @@
 <a href="{{ route('posts.show', $post->id) }}">Vai al post</a>
 <br>
 <a href="{{ route('posts.edit', $post->id) }}"> Aggiorna il post</a>
+<br>
+<a href="{{ route('posts.destroy', $post->id)}}">Elimina</a>
 
 <br>
 @endforeach
