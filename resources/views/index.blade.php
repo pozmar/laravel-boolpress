@@ -7,7 +7,10 @@
 {{ $post->title}} </strong> <br>
 {{ $post->description }}
 </li>
+<a href="{{ route('posts.show', $post->id) }}">Vai al post</a>
+
 <br>
 @endforeach
 </ul>
+
 @endsection

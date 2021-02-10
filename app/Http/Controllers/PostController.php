@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
+use App\Http\Requests\PostRequest;
 use App\PostModel;
 
 class PostController extends Controller
@@ -26,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -35,9 +39,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $newPost = new PostModel();
+        $newPost->title = $validated['title'];
+        $newPost->description = $validated['description'];
+        $newPost->save();
+        return view('success');
+
     }
 
     /**
@@ -48,7 +58,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = PostModel::find($id);
+        return view('show', compact('post'));
     }
 
     /**
